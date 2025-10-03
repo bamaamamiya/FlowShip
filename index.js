@@ -1,29 +1,22 @@
-// index.js
 import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Konversi __dirname (karena pakai ES Modules)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+app.use(cors());
 
-// Middleware
-app.use(cors()); // biar bisa diakses dari React
-app.use(express.json());
-
-// Serve folder api
+// serve static json
 app.use("/api", express.static(path.join(__dirname, "api")));
 
-// Root check
+// contoh route test
 app.get("/", (req, res) => {
-  res.json({ message: "Wilayah API running..." });
+  res.json({ message: "Wilayah API is running 🚀" });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`✅ Server jalan di http://localhost:${PORT}`);
-});
+// ❌ jangan pakai app.listen()
+// ✅ export app biar bisa dipakai Vercel
+export default app;
