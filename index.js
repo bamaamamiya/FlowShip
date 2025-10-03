@@ -12,11 +12,9 @@ app.use(cors());
 // serve static json
 app.use("/api", express.static(path.join(__dirname, "api")));
 
-// contoh route test
+// contoh root
 app.get("/", (req, res) => {
-  res.json({ message: "Wilayah API is running 🚀" });
+  res.json({ message: "Wilayah API running 🚀" });
 });
 
-// ❌ jangan pakai app.listen()
-// ✅ export app biar bisa dipakai Vercel
 export default app;
